@@ -1,0 +1,12 @@
+Existe um banco de dados, em forma de arrays multidimensionais de uma rede de supermercados...
+
+O array é divido três dimensões, primeiramente em supermercados, segundamente de cada mes, 
+de Janeiro até Julho, com cada objeto contendo dentro um produto vendido no mês.
+Os valores de cada objeto(produto) são, respectivamente:
+
+- ID (int)
+- nome_do_produto (str)
+- tipo_do_produto (str) (Ex: Enlatados, Bebidas, Frutas, etc.)
+- preco_do_produto (float)
+- nome_do_comprador (str)
+- data_de_compra (str)
