@@ -1,4 +1,5 @@
 # Importar o big array do arquivo data.py
+import tkinter as tk
 from datatemp import vendas as al
 
 # [número do supermercado], [número do mês], [número do produto]
@@ -10,55 +11,72 @@ from datatemp import vendas as al
 
 # -------- por Quantia Vendida --------
 def findMediaQuantia_geral():
-    # Dicionário para armazenar os preços de cada tipo de produto
-    valores_por_produto = {}
-
-    # Loop sobre a primeira dimensão (rede de supermercados)
+    # Dicionário para armazenar o resultado para cada tipo de produto
+    resultado = {}
+    
+    # Iterar sobre o array tridimensional
     for market in al:
-        # Loop sobre a segunda dimensão (meses de registros)
         for mes in market:
-            # Loop sobre a terceira dimensão (informações dos produtos)
             for produto in mes:
-                tipo_produto = produto['tipo_do_produto']
-                valor = produto['quantidade_vendida']
-
-                # Se o tipo do produto não estiver no dicionário, crie uma lista vazia
-                if tipo_produto not in valores_por_produto:
-                    valores_por_produto[tipo_produto] = []
-
-                # Adicione o preço à lista de preços para esse tipo de produto
-                valores_por_produto[tipo_produto].append(valor)
-
-    # Calcule a média de preço para cada tipo de produto e imprima
-    for tipo_produto, lista_valores in valores_por_produto.items():
-        media_valor = sum(lista_valores) / len(lista_valores)
-        print(f'Média de quantia vendida para {tipo_produto}: {media_valor:.2f}')
+                tipo_produto = produto['tipo_do_produto']  # Suponhamos que 'nome' é a chave que armazena o nome do produto
+                quantidade_vendida = produto['quantidade_vendida']  # Suponhamos que 'quantidade' é a chave que armazena a quantidade vendida
+                preco = produto['preco_do_produto']  # Suponhamos que 'valor' é a chave que armazena o valor unitário
+                
+                # Atualizar o resultado para o tipo de produto atual
+                if tipo_produto in resultado:
+                    resultado[tipo_produto]['total'] += quantidade_vendida
+                    resultado[tipo_produto]['count'] += 1
+                else:
+                    resultado[tipo_produto] = {'total': quantidade_vendida, 'count': 1}
+    
+    # Calcular a média para cada tipo de produto
+    for tipo_produto, total in resultado.items():
+        resultado[tipo_produto]['media'] = total['total'] / total['count']
         
+    janela = tk.Tk()
+    janela.title("Média de Vendas por Produto")
+    
+    # Criar um rótulo para cada tipo de produto e sua média
+    for produto, total in resultado.items():
+        label = tk.Label(janela, text=f"Produto {produto}: Média de {total['media']:.0f} unidades vendidas")
+        label.pack()
+    
+    janela.mainloop()
+    
     return "Fim!"
 
 def findTotalQuantia_geral():
-    # Dicionário para armazenar os preços de cada tipo de produto
+    # Dicionário para armazenar o total de vendas de cada produto
     valores_por_produto = {}
 
-    # Loop sobre a primeira dimensão (rede de supermercados)
+    # Itere sobre a rede de supermercados
     for market in al:
-        # Loop sobre a segunda dimensão (meses de registros)
+        # Itere sobre os meses
         for mes in market:
-            # Loop sobre a terceira dimensão (informações dos produtos)
+            # Itere sobre as informações de produto em cada lista
             for produto in mes:
-                tipo_produto = produto['tipo_do_produto']
-                valor = produto['quantidade_vendida']
+                # Obtenha o nome do produto e a quantidade vendida
+                nome_produto = produto['tipo_do_produto']
+                quantidade_vendida = produto['quantidade_vendida']
 
-                # Atualiza o valor total do tipo de produto no dicionário
-                if tipo_produto in valores_por_produto:
-                    valores_por_produto[tipo_produto] += valor
+                # Atualize o total de vendas para o produto
+                if nome_produto in valores_por_produto:
+                    valores_por_produto[nome_produto] += quantidade_vendida
                 else:
-                    valores_por_produto[tipo_produto] = valor
+                    valores_por_produto[nome_produto] = quantidade_vendida
+                          
+    # Crie uma janela tkinter
+    janela = tk.Tk()
+    janela.title("Total de Vendas por Produto")
 
-    # Calcule a média de preço para cada tipo de produto e imprima
-    for tipo_produto, total_valores in valores_por_produto.items():
-        print(f'Total de quantia vendida para {tipo_produto}: {total_valores:.2f}')
-        
+    # Crie e exiba rótulos para cada produto e seu total de vendas
+    for produto, total in valores_por_produto.items():
+        label = tk.Label(janela, text=f"Produto {produto}: Total de {total} unidades vendidas")
+        label.pack()
+
+    # Inicie o loop de eventos da interface gráfica
+    janela.mainloop()
+
     return "Fim!"
 
     
@@ -78,46 +96,61 @@ def findTotalRenda_geral():
                 else:
                     total_vendas[produto] = total
                     
+    # Crie uma janela Tkinter
+    janela = tk.Tk()
+    janela.title("Relatório de Vendas")
+
+    # Crie um rótulo para cada produto e seu total de vendas
     for produto, total in total_vendas.items():
-        print(f"Total de Renda arrecadada para {produto}: R${total:.2f}")
-        
+        label = tk.Label(janela, text=f"Produto {produto}: Total de Renda: R${total:.2f}")
+        label.pack()
+
+    # Inicie o loop de eventos da interface gráfica
+    janela.mainloop()
     return "Fim!"
     
 def findMediaRenda_geral():
-    total_renda = {}  # Um dicionário para armazenar os resultados
-
-
+    # Dicionário para armazenar o resultado para cada tipo de produto
+    resultado = {}
+    
+    # Iterar sobre o array tridimensional
     for market in al:
         for mes in market:
             for produto in mes:
-                tipo_produto = produto['tipo_do_produto'] 
-                quantidade_vendida = produto['quantidade_vendida'] 
-                preco = produto['preco_do_produto']  
-
-                # Calcula o total vendido para este produto neste mês
-                total_vendido = quantidade_vendida * preco
-
-                # Atualiza o resultado para este produto
-                if tipo_produto in total_renda:
-                    total_renda[tipo_produto].append(total_vendido)
+                tipo_produto = produto['tipo_do_produto']  # Suponhamos que 'nome' é a chave que armazena o nome do produto
+                quantidade_vendida = produto['quantidade_vendida']  # Suponhamos que 'quantidade' é a chave que armazena a quantidade vendida
+                preco = produto['preco_do_produto']  # Suponhamos que 'valor' é a chave que armazena o valor unitário
+                
+                # Atualizar o resultado para o tipo de produto atual
+                if tipo_produto in resultado:
+                    resultado[tipo_produto]['total'] += quantidade_vendida * preco
+                    resultado[tipo_produto]['count'] += 1
                 else:
-                    total_renda[tipo_produto] = [total_vendido]
-
-    # Calcula a média para cada produto
-    for produto, vendas in total_renda.items():
-        media = sum(vendas) / len(vendas)
-        print(f'Média de Renda arrecadada para {produto}: R${media:.2f}')
-        
-    return "Fim!"
+                    resultado[tipo_produto] = {'total': quantidade_vendida * preco, 'count': 1}
     
+    # Calcular a média para cada tipo de produto
+    for tipo_produto, total in resultado.items():
+        resultado[tipo_produto]['media'] = total['total'] / total['count']
+        
+    janela = tk.Tk()
+    janela.title("Média de Vendas por Produto")
+    
+    # Criar um rótulo para cada tipo de produto e sua média
+    for produto, total in resultado.items():
+        label = tk.Label(janela, text=f"Produto {produto}: Média de Renda: R${total['media']:.2f}")
+        label.pack()
+    
+    janela.mainloop()
+    
+    return "Fim!"
 
 
 
 
-totalzinho = findTotalQuantia_geral()
-mediazinha = findTotalRenda_geral()
-what = findMediaQuantia_geral()
-whut = findMediaRenda_geral()
+# totalzinho = findMediaQuantia_geral()
+# mediazinha = findTotalRenda_geral()
+# what = findMediaQuantia_geral()
+# whut = findMediaRenda_geral()
 
     
 # Calculo da média
@@ -135,4 +168,3 @@ media_col2 = round(sum(linha['quantidade_vendida'] for linha in al[0][1]) / len(
 
 # print(mediazinha)
 # print(totalzinho)
-
