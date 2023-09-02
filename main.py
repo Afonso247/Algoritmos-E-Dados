@@ -48,6 +48,9 @@ def start():
         time.sleep(1)
         return start()
 
+
+
+
 # Seleção Total
 def totalSel():
     print("Selecione o tipo da consulta... (Total)")
@@ -218,6 +221,9 @@ def rendaTotalSel():
         return rendaTotalSel()
 
 
+
+
+
 # Seleção Média
 def mediaSel():
     print("Selecione o tipo da consulta... (Média)")
@@ -386,6 +392,8 @@ def rendaMediaSel():
         print("-----")
         time.sleep(1)
         return rendaMediaSel()
+    
+
 
 
 
