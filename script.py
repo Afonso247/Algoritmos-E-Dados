@@ -1,7 +1,6 @@
 # Importar o big array do arquivo data.py
-import tkinter as tk
 import plotly.graph_objects as go
-from datatemp import vendas as al
+from data import vendas as al
 
 # [número do supermercado], [número do mês], [número do produto]
 # print(al[0][1][2]['data_de_compra'].day)
@@ -33,7 +32,8 @@ def findMediaQuantia_geral():
     for filial in media_armazenada:
         for tipo_produto in media_armazenada[filial]:
             media_armazenada[filial][tipo_produto] = round(
-                sum(media_armazenada[filial][tipo_produto]) / len(media_armazenada[filial][tipo_produto])
+                sum(media_armazenada[filial][tipo_produto]) / 
+                len(media_armazenada[filial][tipo_produto])
                 , 0)
             
     estados = list(media_armazenada.keys())
@@ -108,68 +108,101 @@ def findTotalQuantia_geral():
 def findTotalRenda_geral():
     total_vendas = {}
     
-    for market in al:
+    for filial_index, market in enumerate(al):
+        filial_nome = ["PE", "PB", "CE"][filial_index]
+        
         for mes in market:
             for venda in mes:
+                
                 produto = venda["tipo_do_produto"]
                 quantidade = venda["quantidade_vendida"]
                 preco = venda["preco_do_produto"]
                 total = quantidade * preco
+                total = round(total, 2)
+                
+                if filial_nome not in total_vendas:
+                    total_vendas[filial_nome] = {}
+                
                 if produto in total_vendas:
-                    total_vendas[produto] += total
+                    total_vendas[filial_nome][produto] += total
                 else:
-                    total_vendas[produto] = total
+                    total_vendas[filial_nome][produto] = total
                     
-    # Crie uma janela Tkinter
-    janela = tk.Tk()
-    janela.title("Relatório de Vendas")
+    estados = list(total_vendas.keys())
+    categorias = list(total_vendas['PE'].keys())
+    valores = [[total_vendas[estado][categoria] for estado in estados] for categoria in categorias]
+    
+    fig = go.Figure()
 
-    # Crie um rótulo para cada produto e seu total de vendas
-    for produto, total in total_vendas.items():
-        label = tk.Label(janela, text=f"Produto {produto}: Total de Renda: R${total:.2f}")
-        label.pack()
+    for i, categoria in enumerate(categorias):
+        fig.add_trace(go.Bar(
+            x=estados,
+            y=valores[i],
+            name=categoria
+        ))
 
-    # Inicie o loop de eventos da interface gráfica
-    janela.mainloop()
+    fig.update_layout(
+        title='Total de renda acumulada - Categorias e Filiais',
+        xaxis=dict(title='Filiais'),
+        yaxis=dict(title='Renda (R$)'),
+        barmode='group'
+    )
+
+    fig.show()
+    
     return "Fim!"
     
 def findMediaRenda_geral():
-    # Dicionário para armazenar o resultado para cada tipo de produto
-    resultado = {}
-    
-    # Iterar sobre o array tridimensional
-    for market in al:
-        for mes in market:
-            for produto in mes:
-                tipo_produto = produto['tipo_do_produto']  # Suponhamos que 'nome' é a chave que armazena o nome do produto
-                quantidade_vendida = produto['quantidade_vendida']  # Suponhamos que 'quantidade' é a chave que armazena a quantidade vendida
-                preco = produto['preco_do_produto']  # Suponhamos que 'valor' é a chave que armazena o valor unitário
-                
-                # Atualizar o resultado para o tipo de produto atual
-                if tipo_produto in resultado:
-                    resultado[tipo_produto]['total'] += quantidade_vendida * preco
-                    resultado[tipo_produto]['count'] += 1
-                else:
-                    resultado[tipo_produto] = {'total': quantidade_vendida * preco, 'count': 1}
-    
-    # Calcular a média para cada tipo de produto
-    for tipo_produto, total in resultado.items():
-        resultado[tipo_produto]['media'] = total['total'] / total['count']
+    resultado = {}  # Dicionário para armazenar os resultados
+
+    for filial_index, filial in enumerate(al):
+        filial_nome = ["PE", "PB", "CE"][filial_index]
         
-    janela = tk.Tk()
-    janela.title("Média de Vendas por Produto")
+        for mes_index, mes in enumerate(filial):
+            for produto in mes:
+                tipo_produto = produto['tipo_do_produto']
+                preco_produto = produto['preco_do_produto']
+                quantidade_vendida = produto['quantidade_vendida']
+
+                # Se o tipo de produto não estiver no dicionário, crie uma entrada para ele
+                if filial_nome not in resultado:
+                    resultado[filial_nome] = {}
+                
+                if tipo_produto not in resultado[filial_nome]:
+                    resultado[filial_nome][tipo_produto] = []
+
+                resultado[filial_nome][tipo_produto].append(quantidade_vendida * preco_produto)
+                
+    for filial in resultado:
+        for tipo_produto in resultado[filial]:
+            resultado[filial][tipo_produto] = round(
+                sum(resultado[filial][tipo_produto]) / 
+                len(resultado[filial][tipo_produto])
+                , 2)
+            
+    estados = list(resultado.keys())
+    categorias = list(resultado['PE'].keys())
+    valores = [[resultado[estado][categoria] for estado in estados] for categoria in categorias]
     
-    # Criar um rótulo para cada tipo de produto e sua média
-    for produto, total in resultado.items():
-        label = tk.Label(janela, text=f"Produto {produto}: Média de Renda: R${total['media']:.2f}")
-        label.pack()
-    
-    janela.mainloop()
-    
+    fig = go.Figure()
+
+    for i, categoria in enumerate(categorias):
+        fig.add_trace(go.Bar(
+            x=estados,
+            y=valores[i],
+            name=categoria
+        ))
+
+    fig.update_layout(
+        title='Média de renda acumulada - Categorias e Filiais',
+        xaxis=dict(title='Filiais'),
+        yaxis=dict(title='Renda (R$)'),
+        barmode='group'
+    )
+
+    fig.show()
+
     return "Fim!"
-
-
-    
 
 
 
@@ -194,4 +227,4 @@ media_col2 = round(sum(linha['quantidade_vendida'] for linha in al[0][1]) / len(
 # print(f'Média da coluna 3: {media_col3}')
 
 # print(mediazinha)
-# print(totalzinho)
+# print(whut)
