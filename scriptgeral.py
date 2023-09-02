@@ -7,7 +7,7 @@ from data import vendas as al
 # print(al[0][0][0]['nome_do_produto'])
 
 
-# 10mil funções sobre a análise do array por Tipo de Produto
+# Análise geral do array
 
 # -------- por Quantia Vendida --------
 def findMediaQuantia_geral():
@@ -50,7 +50,7 @@ def findMediaQuantia_geral():
         ))
 
     fig.update_layout(
-        title='Média de quantidade vendida - Categorias e Filiais',
+        title='Média de quantidade vendida - Categorias e Filiais (Mês 1 - 6)',
         xaxis=dict(title='Filiais'),
         yaxis=dict(title='Quantidade Vendida'),
         barmode='group'
@@ -58,7 +58,7 @@ def findMediaQuantia_geral():
 
     fig.show()
 
-    return "Fim!"
+    return media_armazenada
 
 def findTotalQuantia_geral():
     total_armazenado = {}  # Dicionário para armazenar os totais
@@ -93,7 +93,7 @@ def findTotalQuantia_geral():
         ))
 
     fig.update_layout(
-        title='Total de quantidade vendida - Categorias e Filiais',
+        title='Total de quantidade vendida - Categorias e Filiais (Mês 1 - 6)',
         xaxis=dict(title='Filiais'),
         yaxis=dict(title='Quantidade Vendida'),
         barmode='group'
@@ -101,7 +101,7 @@ def findTotalQuantia_geral():
 
     fig.show()
 
-    return "Fim!"
+    return total_armazenado
 
     
 # -------- por Renda Arrecadada --------
@@ -142,18 +142,18 @@ def findTotalRenda_geral():
         ))
 
     fig.update_layout(
-        title='Total de renda acumulada - Categorias e Filiais',
+        title='Total de renda acumulada - Categorias e Filiais (Mês 1 - 6)',
         xaxis=dict(title='Filiais'),
-        yaxis=dict(title='Renda (R$)'),
+        yaxis=dict(title='Renda Acumulada (R$)'),
         barmode='group'
     )
 
     fig.show()
     
-    return "Fim!"
+    return total_vendas
     
 def findMediaRenda_geral():
-    resultado = {}  # Dicionário para armazenar os resultados
+    media_vendas = {}  # Dicionário para armazenar os resultados
 
     for filial_index, filial in enumerate(al):
         filial_nome = ["PE", "PB", "CE"][filial_index]
@@ -165,24 +165,24 @@ def findMediaRenda_geral():
                 quantidade_vendida = produto['quantidade_vendida']
 
                 # Se o tipo de produto não estiver no dicionário, crie uma entrada para ele
-                if filial_nome not in resultado:
-                    resultado[filial_nome] = {}
+                if filial_nome not in media_vendas:
+                    media_vendas[filial_nome] = {}
                 
-                if tipo_produto not in resultado[filial_nome]:
-                    resultado[filial_nome][tipo_produto] = []
+                if tipo_produto not in media_vendas[filial_nome]:
+                    media_vendas[filial_nome][tipo_produto] = []
 
-                resultado[filial_nome][tipo_produto].append(quantidade_vendida * preco_produto)
+                media_vendas[filial_nome][tipo_produto].append(quantidade_vendida * preco_produto)
                 
-    for filial in resultado:
-        for tipo_produto in resultado[filial]:
-            resultado[filial][tipo_produto] = round(
-                sum(resultado[filial][tipo_produto]) / 
-                len(resultado[filial][tipo_produto])
+    for filial in media_vendas:
+        for tipo_produto in media_vendas[filial]:
+            media_vendas[filial][tipo_produto] = round(
+                sum(media_vendas[filial][tipo_produto]) / 
+                len(media_vendas[filial][tipo_produto])
                 , 2)
             
-    estados = list(resultado.keys())
-    categorias = list(resultado['PE'].keys())
-    valores = [[resultado[estado][categoria] for estado in estados] for categoria in categorias]
+    estados = list(media_vendas.keys())
+    categorias = list(media_vendas['PE'].keys())
+    valores = [[media_vendas[estado][categoria] for estado in estados] for categoria in categorias]
     
     fig = go.Figure()
 
@@ -194,15 +194,18 @@ def findMediaRenda_geral():
         ))
 
     fig.update_layout(
-        title='Média de renda acumulada - Categorias e Filiais',
+        title='Média de renda acumulada - Categorias e Filiais (Mês 1 - 6)',
         xaxis=dict(title='Filiais'),
-        yaxis=dict(title='Renda (R$)'),
+        yaxis=dict(title='Renda Acumulada (R$)'),
         barmode='group'
     )
 
     fig.show()
 
-    return "Fim!"
+    return media_vendas
+
+
+    
 
 
 
@@ -214,17 +217,15 @@ def findMediaRenda_geral():
 
     
 # Calculo da média
-total_col1 = round(sum(linha['quantidade_vendida'] for linha in al[0][0]), 2)
-media_col1 = round(sum(linha['quantidade_vendida'] for linha in al[0][0]) / len(al[0][0]), 2)
-total_col2 = round(sum(linha['quantidade_vendida'] for linha in al[0][1]), 2)
-media_col2 = round(sum(linha['quantidade_vendida'] for linha in al[0][1]) / len(al[0][1]), 2)
-# media_col3 = sum(linha['preco_do_produto'] for linha in al[0][2]) / len(al[0][2])
+# total_col1 = round(sum(linha['quantidade_vendida'] for linha in al[0][0]), 2)
+# media_col1 = round(sum(linha['quantidade_vendida'] for linha in al[0][0]) / len(al[0][0]), 2)
+# total_col2 = round(sum(linha['quantidade_vendida'] for linha in al[0][1]), 2)
+# media_col2 = round(sum(linha['quantidade_vendida'] for linha in al[0][1]) / len(al[0][1]), 2)
 
 # print(f'Total de vendas em Janeiro: R${total_col1}')
 # print(f'Média de vendas em Janeiro: R${media_col1}')
 # print(f'Total de vendas em Fevereiro: R${total_col2}')
 # print(f'Média de vendas em Fevereiro: R${media_col2}')
-# print(f'Média da coluna 3: {media_col3}')
 
 # print(mediazinha)
 # print(whut)
