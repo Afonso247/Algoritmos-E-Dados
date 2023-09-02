@@ -97,7 +97,6 @@ def quantiaTotalSel():
         if(1 <= int(select) <= 6):
             print("Selecione o mes final a ser consultado... (Quantia - Total)")
             print("Jan-Jun: 1-6")
-            print("Consulta geral: 7")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -111,10 +110,6 @@ def quantiaTotalSel():
             try:
                 if(1 <= int(selector) <= 6):
                     fTQpM(int(select)-1, int(selector))
-                    print("-----")
-                    return start()
-                elif(int(selector) == 7):
-                    fTQg()
                     print("-----")
                     return start()
                 elif(int(selector) == 0):
@@ -165,7 +160,6 @@ def rendaTotalSel():
         if(1 <= int(select) <= 6):
             print("Selecione o mes final a ser consultado... (Renda - Total)")
             print("Jan-Jun: 1-6")
-            print("Consulta geral: 7")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -179,10 +173,6 @@ def rendaTotalSel():
             try:
                 if(1 <= int(selector) <= 6):
                     fTRpM(int(select)-1, int(selector))
-                    print("-----")
-                    return start()
-                elif(int(selector) == 7):
-                    fTRg()
                     print("-----")
                     return start()
                 elif(int(selector) == 0):
@@ -270,7 +260,6 @@ def quantiaMediaSel():
         if(1 <= int(select) <= 6):
             print("Selecione o mes final a ser consultado... (Quantia - Media)")
             print("Jan-Jun: 1-6")
-            print("Consulta geral: 7")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -284,10 +273,6 @@ def quantiaMediaSel():
             try:
                 if(1 <= int(selector) <= 6):
                     fMQpM(int(select)-1, int(selector))
-                    print("-----")
-                    return start()
-                elif(int(selector) == 7):
-                    fMQg()
                     print("-----")
                     return start()
                 elif(int(selector) == 0):
@@ -338,7 +323,6 @@ def rendaMediaSel():
         if(1 <= int(select) <= 6):
             print("Selecione o mes final a ser consultado... (Renda - Media)")
             print("Jan-Jun: 1-6")
-            print("Consulta geral: 7")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -352,10 +336,6 @@ def rendaMediaSel():
             try:
                 if(1 <= int(selector) <= 6):
                     fMRpM(int(select)-1, int(selector))
-                    print("-----")
-                    return start()
-                elif(int(selector) == 7):
-                    fMRg()
                     print("-----")
                     return start()
                 elif(int(selector) == 0):
