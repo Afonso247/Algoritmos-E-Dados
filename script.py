@@ -254,6 +254,46 @@ def findMediaRenda_porMes(mes_inicial, mes_final):
 
     return media_vendas
 
+def findFilialMaiorFaturamento():
+    total_vendas = {}  # Dicionário para armazenar os resultados
+
+    for filial_index, filial in enumerate(al):
+        filial_nome = ["PE", "PB", "CE"][filial_index]
+        filial_total_vendas = 0  # Inicializa o total de vendas da filial
+
+        for mes_index, mes in enumerate(filial):
+            for produto in mes:
+                preco_produto = produto['preco_do_produto']
+                quantidade_vendida = produto['quantidade_vendida']
+
+                # Calcula o total de vendas da filial para o mês
+                total_mes = quantidade_vendida * preco_produto
+                filial_total_vendas += total_mes
+
+        # Calcula a média de vendas da filial e arredonda para 2 casas decimais
+        total_vendas[filial_nome] = round(filial_total_vendas / (mes_index + 1), 2)
+                
+    estados = list(total_vendas.keys())
+    
+    fig = go.Figure()
+
+    fig.add_trace(go.Bar(
+        x=estados,
+        y=list(total_vendas.values()),
+        name='Média de Valores'
+    ))
+
+    fig.update_layout(
+        title='Filial com Maior Faturamento (Mês 1 - 6)',
+        xaxis=dict(title='Filiais'),
+        yaxis=dict(title='Média de Valores (R$)'),
+        barmode='group'
+    )
+
+    fig.show()
+
+    return total_vendas
+
 
 
 
