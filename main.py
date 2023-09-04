@@ -14,9 +14,9 @@ print("Bem-vindo a rede de supermercados")
 def start():
     
     
-    print("Em que formato você deseja consultar?")
-    print("Por valor total: 1")
-    print("Por valor mediano: 2")
+    print("O que você deseja consultar?")
+    print("Valor total das vendas: 1")
+    print("Valor mediano das vendas: 2")
     print("Filial com Maior Faturamento: 3")
     print("Sair: 0")
 
