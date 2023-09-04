@@ -1,11 +1,5 @@
 import time
-from scriptgeral import (
-    findTotalQuantia_geral as fTQg,
-    findMediaQuantia_geral as fMQg,
-    findTotalRenda_geral as fTRg,
-    findMediaRenda_geral as fMRg
-)
-from scriptpormes import (
+from script import (
     findTotalQuantia_porMes as fTQpM,
     findTotalRenda_porMes as fTRpM,
     findMediaQuantia_porMes as fMQpM,
@@ -128,7 +122,7 @@ def quantiaTotalSel():
                 time.sleep(1)
                 return quantiaTotalSel()
         elif(int(select) == 7):
-            fTQg()
+            fTQpM(0, 6)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -191,7 +185,7 @@ def rendaTotalSel():
                 time.sleep(1)
                 return rendaTotalSel()
         elif(int(select) == 7):
-            fTRg()
+            fTRpM(0, 6)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -291,7 +285,7 @@ def quantiaMediaSel():
                 time.sleep(1)
                 return quantiaMediaSel()
         elif(int(select) == 7):
-            fMQg()
+            fMQpM(0, 6)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -354,7 +348,7 @@ def rendaMediaSel():
                 time.sleep(1)
                 return rendaMediaSel()
         elif(int(select) == 7):
-            fMRg()
+            fMRpM(0, 6)
             print("-----")
             return start()
         elif(int(select) == 0):
