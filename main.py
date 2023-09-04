@@ -3,7 +3,8 @@ from script import (
     findTotalQuantia_porMes as fTQpM,
     findTotalRenda_porMes as fTRpM,
     findMediaQuantia_porMes as fMQpM,
-    findMediaRenda_porMes as fMRpM
+    findMediaRenda_porMes as fMRpM,
+    findFilialMaiorFaturamento as fFMF
 )
 
 print("Bem-vindo a rede de supermercados")
@@ -16,6 +17,7 @@ def start():
     print("Em que formato você deseja consultar?")
     print("Por valor total: 1")
     print("Por valor mediano: 2")
+    print("Filial com Maior Faturamento: 3")
     print("Sair: 0")
 
     select = input("Digite aqui: ")
@@ -28,6 +30,9 @@ def start():
         elif(int(select) == 2):
             print("-----")
             return mediaSel()
+        elif(int(select) == 3):
+            print("-----")
+            return totalFilial()
         elif(int(select) == 0):
             print("Até mais!")
             return None
@@ -368,7 +373,35 @@ def rendaMediaSel():
         return rendaMediaSel()
     
 
-
+# Total filial
+def totalFilial():
+    print("Confirme sua solicitação para Filial com Maior Faturamento")
+    print("Confirme: 1")
+    print("Voltar: 0")
+    
+    select = input("Digite aqui: ")
+    
+    
+    try:
+        if(int(select) == 1):
+            fFMF()
+            print("-----")
+            return start()
+        elif(int(select) == 0):
+            print("Voltando...")
+            print("-----")
+            time.sleep(1)
+            return start()
+        else:
+            print("Houve um erro! Provavelmente você digitou uma opção inválida...")
+            print("-----")
+            time.sleep(1)
+            return totalFilial()
+    except ValueError:
+        print("Houve um erro de valor! Tente novamente.")
+        print("-----")
+        time.sleep(1)
+        return totalFilial()
 
 
 # Início do programa
