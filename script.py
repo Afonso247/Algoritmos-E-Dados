@@ -239,14 +239,14 @@ def findMediaRenda_porMes(mes_inicial, mes_final):
         fig.update_layout(
         title=f'Média de renda acumulada - Categorias e Filiais (Mês {mes_inicial + 1})',
         xaxis=dict(title='Filiais'),
-        yaxis=dict(title='Quantidade Vendida'),
+        yaxis=dict(title='Renda Acumulada (R$)'),
         barmode='group'
         )
     else:
         fig.update_layout(
         title=f'Média de renda acumulada - Categorias e Filiais (Mês {mes_inicial + 1} até {mes_final})',
         xaxis=dict(title='Filiais'),
-        yaxis=dict(title='Quantidade Vendida'),
+        yaxis=dict(title='Renda Acumulada (R$)'),
         barmode='group'
         )
 
@@ -258,7 +258,7 @@ def findMediaRenda_porMes(mes_inicial, mes_final):
 
 
 
-# totalzinho = findTotalQuantia_porMes(0,4)
+# totalzinho = findTotalQuantia_porMes(0,6)
 # print(totalzinho)
 # totalzao = findTotalRenda_porMes(1,4)
 # print(totalzao)
