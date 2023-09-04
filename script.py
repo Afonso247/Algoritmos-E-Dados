@@ -280,7 +280,8 @@ def findFilialMaiorFaturamento():
     fig.add_trace(go.Bar(
         x=estados,
         y=list(total_vendas.values()),
-        name='Média de Valores'
+        name='Média de Valores',
+        marker_color=['#04D98B', '#8263F2', '#F20C49']
     ))
 
     fig.update_layout(
