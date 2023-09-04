@@ -270,8 +270,7 @@ def findFilialMaiorFaturamento():
                 total_mes = quantidade_vendida * preco_produto
                 filial_total_vendas += total_mes
 
-        # Calcula a média de vendas da filial e arredonda para 2 casas decimais
-        total_vendas[filial_nome] = round(filial_total_vendas / (mes_index + 1), 2)
+        total_vendas[filial_nome] = round(filial_total_vendas)
                 
     estados = list(total_vendas.keys())
     
@@ -294,17 +293,4 @@ def findFilialMaiorFaturamento():
     fig.show()
 
     return total_vendas
-
-
-
-
-
-# totalzinho = findTotalQuantia_porMes(0,6)
-# print(totalzinho)
-# totalzao = findTotalRenda_porMes(1,4)
-# print(totalzao)
-# mediazinha = findMediaQuantia_porMes(0,4)
-# print(mediazinha)
-# mediazao = findMediaRenda_porMes(1,4)
-# print(mediazao)
 
