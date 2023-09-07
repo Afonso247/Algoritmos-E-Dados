@@ -13,13 +13,14 @@ from scriptgeral import (
 )
 
 print("Bem-vindo a rede de supermercados")
+print()
 
 
 # Início da interface
 def start():
     
     
-    print("Selecione o tipo de consulta:")
+    print("SELECIONE O TIPO DE CONSULTA DESEJADO:")
     print("Categorias e filiais: 1")
     print("Somente filiais: 2")
     print("Sair: 0")
@@ -89,8 +90,8 @@ def chooseFilial():
 # Seleção total
 def ftotalSel():
     print("Selecione o tipo da consulta... (SF - Total)")
-    print("Por Quantia: 1")
-    print("Por Renda: 2")
+    print("Por Quantidade de produtos vendidos: 1")
+    print("Por Renda gerada pelos produtos: 2")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
@@ -252,8 +253,8 @@ def frendaTotalSel():
 # Seleção Média
 def fmediaSel():
     print("Selecione o tipo da consulta... (SF - Média)")
-    print("Por Quantia: 1")
-    print("Por Renda: 2")
+    print("Por Quantidade de produtos vendidos: 1")
+    print("Por Renda gerada pelos produtos: 2")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
@@ -452,8 +453,8 @@ def chooseCategoria():
 # Seleção Total
 def totalSel():
     print("Selecione o tipo da consulta... (C&F - Total)")
-    print("Por Quantia: 1")
-    print("Por Renda: 2")
+    print("Por Quantidade de produtos vendidos: 1")
+    print("Por Renda gerada pelos produtos: 2")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
@@ -615,8 +616,8 @@ def rendaTotalSel():
 # Seleção Média
 def mediaSel():
     print("Selecione o tipo da consulta... (C&F - Média)")
-    print("Por Quantia: 1")
-    print("Por Renda: 2")
+    print("Por Quantidade de produtos vendidos: 1")
+    print("Por Renda gerada pelos produtos: 2")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
