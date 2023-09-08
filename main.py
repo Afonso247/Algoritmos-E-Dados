@@ -122,17 +122,17 @@ def ftotalSel():
     
 def fquantiaTotalSel():
     print("Selecione o mês de início a ser consultado... (SF - Quantia - Total)")
-    print("Jan-Jun: 1-6")
-    print("Todos os meses: 7")
+    print("Jan-Dez: 1-12")
+    print("Todos os meses: 13")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
     
     
     try:
-        if(1 <= int(select) <= 6):
+        if(1 <= int(select) <= 12):
             print("Selecione o mes final a ser consultado... (SF - Quantia - Total)")
-            print("Jan-Jun: 1-6")
+            print("Jan-Dez: 1-12")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -144,7 +144,7 @@ def fquantiaTotalSel():
                 return fquantiaTotalSel()
             
             try:
-                if(1 <= int(selector) <= 6):
+                if(1 <= int(selector) <= 12):
                     fTQg(int(select)-1, int(selector))
                     print("-----")
                     return start()
@@ -163,8 +163,8 @@ def fquantiaTotalSel():
                 print("-----")
                 time.sleep(1)
                 return fquantiaTotalSel()
-        elif(int(select) == 7):
-            fTQg(0, 6)
+        elif(int(select) == 13):
+            fTQg(0, 12)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -185,17 +185,17 @@ def fquantiaTotalSel():
     
 def frendaTotalSel():
     print("Selecione o mês de início a ser consultado... (SF - Renda - Total)")
-    print("Jan-Jun: 1-6")
-    print("Todos os meses: 7")
+    print("Jan-Dez: 1-12")
+    print("Todos os meses: 13")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
     
     
     try:
-        if(1 <= int(select) <= 6):
+        if(1 <= int(select) <= 12):
             print("Selecione o mes final a ser consultado... (SF - Renda - Total)")
-            print("Jan-Jun: 1-6")
+            print("Jan-Dez: 1-12")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -207,7 +207,7 @@ def frendaTotalSel():
                 return frendaTotalSel()
             
             try:
-                if(1 <= int(selector) <= 6):
+                if(1 <= int(selector) <= 12):
                     fTRg(int(select)-1, int(selector))
                     print("-----")
                     return start()
@@ -226,8 +226,8 @@ def frendaTotalSel():
                 print("-----")
                 time.sleep(1)
                 return frendaTotalSel()
-        elif(int(select) == 7):
-            fTRg(0, 6)
+        elif(int(select) == 13):
+            fTRg(0, 12)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -285,17 +285,17 @@ def fmediaSel():
     
 def fquantiaMediaSel():
     print("Selecione o mês de início a ser consultado... (SF - Quantia - Media)")
-    print("Jan-Jun: 1-6")
-    print("Todos os meses: 7")
+    print("Jan-Dez: 1-12")
+    print("Todos os meses: 13")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
     
     
     try:
-        if(1 <= int(select) <= 6):
+        if(1 <= int(select) <= 12):
             print("Selecione o mes final a ser consultado... (SF - Quantia - Media)")
-            print("Jan-Jun: 1-6")
+            print("Jan-Dez: 1-12")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -307,7 +307,7 @@ def fquantiaMediaSel():
                 return fquantiaMediaSel()
             
             try:
-                if(1 <= int(selector) <= 6):
+                if(1 <= int(selector) <= 12):
                     fMQg(int(select)-1, int(selector))
                     print("-----")
                     return start()
@@ -326,8 +326,8 @@ def fquantiaMediaSel():
                 print("-----")
                 time.sleep(1)
                 return fquantiaMediaSel()
-        elif(int(select) == 7):
-            fMQg(0, 6)
+        elif(int(select) == 13):
+            fMQg(0, 12)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -348,17 +348,17 @@ def fquantiaMediaSel():
     
 def frendaMediaSel():
     print("Selecione o mês de início a ser consultado... (SF - Renda - Media)")
-    print("Jan-Jun: 1-6")
-    print("Todos os meses: 7")
+    print("Jan-Dez: 1-12")
+    print("Todos os meses: 13")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
     
     
     try:
-        if(1 <= int(select) <= 6):
+        if(1 <= int(select) <= 12):
             print("Selecione o mes final a ser consultado... (SF - Renda - Media)")
-            print("Jan-Jun: 1-6")
+            print("Jan-Dez: 1-12")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -370,7 +370,7 @@ def frendaMediaSel():
                 return frendaMediaSel()
             
             try:
-                if(1 <= int(selector) <= 6):
+                if(1 <= int(selector) <= 12):
                     fMRg(int(select)-1, int(selector))
                     print("-----")
                     return start()
@@ -389,8 +389,8 @@ def frendaMediaSel():
                 print("-----")
                 time.sleep(1)
                 return frendaMediaSel()
-        elif(int(select) == 7):
-            fMRg(0, 6)
+        elif(int(select) == 13):
+            fMRg(0, 12)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -485,17 +485,17 @@ def totalSel():
     
 def quantiaTotalSel():
     print("Selecione o mês de início a ser consultado... (C&F - Quantia - Total)")
-    print("Jan-Jun: 1-6")
-    print("Todos os meses: 7")
+    print("Jan-Dez: 1-12")
+    print("Todos os meses: 13")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
     
     
     try:
-        if(1 <= int(select) <= 6):
+        if(1 <= int(select) <= 12):
             print("Selecione o mes final a ser consultado... (C&F - Quantia - Total)")
-            print("Jan-Jun: 1-6")
+            print("Jan-Dez: 1-12")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -507,7 +507,7 @@ def quantiaTotalSel():
                 return quantiaTotalSel()
             
             try:
-                if(1 <= int(selector) <= 6):
+                if(1 <= int(selector) <= 12):
                     fTQpM(int(select)-1, int(selector))
                     print("-----")
                     return start()
@@ -526,8 +526,8 @@ def quantiaTotalSel():
                 print("-----")
                 time.sleep(1)
                 return quantiaTotalSel()
-        elif(int(select) == 7):
-            fTQpM(0, 6)
+        elif(int(select) == 13):
+            fTQpM(0, 12)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -548,17 +548,17 @@ def quantiaTotalSel():
     
 def rendaTotalSel():
     print("Selecione o mês de início a ser consultado... (C&F - Renda - Total)")
-    print("Jan-Jun: 1-6")
-    print("Todos os meses: 7")
+    print("Jan-Dez: 1-12")
+    print("Todos os meses: 13")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
     
     
     try:
-        if(1 <= int(select) <= 6):
+        if(1 <= int(select) <= 12):
             print("Selecione o mes final a ser consultado... (C&F - Renda - Total)")
-            print("Jan-Jun: 1-6")
+            print("Jan-Dez: 1-12")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -570,7 +570,7 @@ def rendaTotalSel():
                 return rendaTotalSel()
             
             try:
-                if(1 <= int(selector) <= 6):
+                if(1 <= int(selector) <= 12):
                     fTRpM(int(select)-1, int(selector))
                     print("-----")
                     return start()
@@ -589,8 +589,8 @@ def rendaTotalSel():
                 print("-----")
                 time.sleep(1)
                 return rendaTotalSel()
-        elif(int(select) == 7):
-            fTRpM(0, 6)
+        elif(int(select) == 13):
+            fTRpM(0, 12)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -648,17 +648,17 @@ def mediaSel():
     
 def quantiaMediaSel():
     print("Selecione o mês de início a ser consultado... (C&F - Quantia - Media)")
-    print("Jan-Jun: 1-6")
-    print("Todos os meses: 7")
+    print("Jan-Dez: 1-12")
+    print("Todos os meses: 13")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
     
     
     try:
-        if(1 <= int(select) <= 6):
+        if(1 <= int(select) <= 12):
             print("Selecione o mes final a ser consultado... (C&F - Quantia - Media)")
-            print("Jan-Jun: 1-6")
+            print("Jan-Dez: 1-12")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -670,7 +670,7 @@ def quantiaMediaSel():
                 return quantiaMediaSel()
             
             try:
-                if(1 <= int(selector) <= 6):
+                if(1 <= int(selector) <= 12):
                     fMQpM(int(select)-1, int(selector))
                     print("-----")
                     return start()
@@ -689,8 +689,8 @@ def quantiaMediaSel():
                 print("-----")
                 time.sleep(1)
                 return quantiaMediaSel()
-        elif(int(select) == 7):
-            fMQpM(0, 6)
+        elif(int(select) == 13):
+            fMQpM(0, 12)
             print("-----")
             return start()
         elif(int(select) == 0):
@@ -711,17 +711,17 @@ def quantiaMediaSel():
     
 def rendaMediaSel():
     print("Selecione o mês de início a ser consultado... (C&F - Renda - Media)")
-    print("Jan-Jun: 1-6")
-    print("Todos os meses: 7")
+    print("Jan-Dez: 1-12")
+    print("Todos os meses: 13")
     print("Voltar: 0")
     
     select = input("Digite aqui: ")
     
     
     try:
-        if(1 <= int(select) <= 6):
+        if(1 <= int(select) <= 12):
             print("Selecione o mes final a ser consultado... (C&F - Renda - Media)")
-            print("Jan-Jun: 1-6")
+            print("Jan-Dez: 1-12")
             print("Voltar: 0")
             
             selector = input("Digite aqui: ")
@@ -733,7 +733,7 @@ def rendaMediaSel():
                 return rendaMediaSel()
             
             try:
-                if(1 <= int(selector) <= 6):
+                if(1 <= int(selector) <= 12):
                     fMRpM(int(select)-1, int(selector))
                     print("-----")
                     return start()
@@ -752,8 +752,8 @@ def rendaMediaSel():
                 print("-----")
                 time.sleep(1)
                 return rendaMediaSel()
-        elif(int(select) == 7):
-            fMRpM(0, 6)
+        elif(int(select) == 13):
+            fMRpM(0, 12)
             print("-----")
             return start()
         elif(int(select) == 0):
